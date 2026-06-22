@@ -14,7 +14,11 @@ if (!fs.existsSync(screenshotDir)) {
 async function open_browser() {
   // Railway provides no display server, so we MUST run headless in production
   const isProduction = process.env.NODE_ENV === 'production' || process.env.RAILWAY_ENVIRONMENT;
-  browser = await chromium.launch({ headless: !!isProduction, slowMo: 80 });
+  browser = await chromium.launch({
+    headless: !!isProduction,
+    slowMo: 80,
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+  });
   const context = await browser.newContext({ viewport: { width: 1280, height: 720 } });
   page = await context.newPage();
   return `Browser opened successfully (headless: ${!!isProduction})`;
