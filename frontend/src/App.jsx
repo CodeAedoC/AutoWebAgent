@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 // Backend URL: empty string in dev (Vite proxy handles it), Railway URL in production
-const BACKEND = typeof __BACKEND_URL__ !== 'undefined' ? __BACKEND_URL__ : '';
+const BACKEND = typeof __BACKEND_URL__ !== 'undefined' ? __BACKEND_URL__.replace(/\/$/, '') : '';
 
 // ─── Color mapping for different log types ────────────────────────────────────
 const LOG_STYLES = {
