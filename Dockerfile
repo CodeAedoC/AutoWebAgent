@@ -1,5 +1,5 @@
-# Use Node.js 24 on Debian Bookworm
-FROM node:24-bookworm-slim
+# Use Node.js 20 on Debian Bookworm (Playwright is stable on Node 20 LTS)
+FROM node:20-bookworm-slim
 
 WORKDIR /app
 
