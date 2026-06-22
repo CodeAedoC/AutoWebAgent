@@ -7,11 +7,10 @@ const { runAgent } = require('./agent');
 
 const app = express();
 
-// Allow requests from GitHub Pages frontend and local development
 app.use(cors({
   origin: [
-    'https://CodeAedoC.github.io', // GitHub Pages
-    /^http:\/\/localhost(:\d+)?$/,   // Any localhost port for local dev
+    'https://codeaedoc.github.io',
+    /^http:\/\/localhost(:\d+)?$/,
   ],
   methods: ['GET', 'POST'],
 }));

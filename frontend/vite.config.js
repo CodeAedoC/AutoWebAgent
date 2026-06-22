@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  // Base path for GitHub Pages: /<repo-name>/
-  base: '/AutoWebAgent/',
+  // Use a relative base path so assets load correctly on any GitHub Pages URL structure
+  base: './',
   server: {
     port: 5173,
     // Proxy /api to backend during local development
