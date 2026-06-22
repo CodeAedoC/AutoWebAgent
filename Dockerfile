@@ -15,6 +15,6 @@ RUN npx playwright install --with-deps chromium
 COPY backend/ .
 
 # Expose the port Railway will route traffic to
-EXPOSE 3001
+EXPOSE 8080
 
 CMD ["node", "index.js"]
