@@ -8,11 +8,8 @@ const { runAgent } = require('./agent');
 const app = express();
 
 app.use(cors({
-  origin: [
-    'https://codeaedoc.github.io',
-    /^http:\/\/localhost(:\d+)?$/,
-  ],
-  methods: ['GET', 'POST'],
+  origin: '*', // Allow all origins to completely eliminate CORS as an issue
+  methods: ['GET', 'POST', 'OPTIONS'],
 }));
 
 app.use(express.json());

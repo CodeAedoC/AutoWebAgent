@@ -1,13 +1,5 @@
-# Use Node.js 20 on Debian Bookworm (needed for Playwright system dependencies)
-FROM node:20-bookworm-slim
-
-# Install Playwright's system dependencies for Chromium
-RUN apt-get update && apt-get install -y \
-    libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 \
-    libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 \
-    libgbm1 libasound2 libpango-1.0-0 libcairo2 libx11-6 libxext6 \
-    wget ca-certificates fonts-liberation \
-    --no-install-recommends && rm -rf /var/lib/apt/lists/*
+# Use Node.js 24 on Debian Bookworm
+FROM node:24-bookworm-slim
 
 WORKDIR /app
 
@@ -15,8 +7,9 @@ WORKDIR /app
 COPY backend/package*.json ./
 RUN npm install
 
-# Install Playwright's Chromium browser binary
-RUN npx playwright install chromium
+# Install Playwright's Chromium browser and ALL required system dependencies
+# This is crucial for Railway, otherwise headless Chromium crashes immediately
+RUN npx playwright install --with-deps chromium
 
 # Copy the backend source code
 COPY backend/ .
